@@ -1,7 +1,7 @@
 # Gai-b3Go
 ## 概念
 ### NodeStaus
-- SUCCESS:节点执行成功
+- `SUCCESS`:节点执行成功
 - FAILURE:节点执行失败
 - RUNNING:节点运行中，用作持续性动作
 - ERROR:报错，一般用作程序异常，不再常规逻辑
