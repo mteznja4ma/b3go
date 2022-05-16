@@ -52,6 +52,10 @@ func (c *Composite) GetChild(index int) IBaseNode {
 	return c.children[index]
 }
 
+func (c *Composite) GetAllChild() []IBaseNode {
+	return c.children
+}
+
 //AddChild
 func (c *Composite) AddChild(child IBaseNode) {
 	c.children = append(c.children, child)
