@@ -56,6 +56,7 @@ type BlackBoard struct {
 
 func NewBlackBoard() *BlackBoard {
 	b := &BlackBoard{}
+	b.Initialize()
 	return b
 }
 
