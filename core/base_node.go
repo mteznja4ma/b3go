@@ -1,7 +1,8 @@
 package core
 
 import (
-	"github.com/MTEzNjA4MA/Gai-b3Go/util"
+	"github.com/mteznja4ma/Gai-b3Go/config"
+	"github.com/mteznja4ma/Gai-b3Go/util"
 )
 
 type IBaseWrapper interface {
@@ -15,11 +16,14 @@ type IBaseWrapper interface {
 
 type IBaseNode interface {
 	IBaseWrapper
-	Ctor()
+	Category()
+	Initialize(params *config.B3NodeConfig)
 	Execute(tick *Tick) util.Status
 	GetTitle() string
 	GetCategory() string
 	GetName() string
+	SetBaseNodeWorker(w IBaseWorker)
+	GetBaseNodeWorker() IBaseWorker
 }
 
 type BaseNode struct {
@@ -29,6 +33,8 @@ type BaseNode struct {
 	category    string
 	title       string
 	description string
+	parameters  map[string]interface{}
+	properties  map[string]interface{}
 }
 
 func (b *BaseNode) SetName(name string) {
@@ -43,7 +49,7 @@ func (b *BaseNode) SetDescription(description string) {
 	b.description = description
 }
 
-func (b *BaseNode) Ctor() {}
+func (b *BaseNode) Category() {}
 
 func (b *BaseNode) GetID() string {
 	return b.id
@@ -59,6 +65,28 @@ func (b *BaseNode) GetTitle() string {
 
 func (b *BaseNode) GetCategory() string {
 	return b.category
+}
+
+func (b *BaseNode) GetBaseNodeWorker() IBaseWorker {
+	return b.IBaseWorker
+}
+
+func (b *BaseNode) SetBaseNodeWorker(w IBaseWorker) {
+	b.IBaseWorker = w
+}
+
+func (b *BaseNode) Initialize(c *config.B3NodeConfig) {
+	//this.id = b3.CreateUUID()
+	//this.title       = this.title || this.name
+	b.parameters = make(map[string]interface{})
+	b.properties = make(map[string]interface{})
+
+	b.id = c.Id //|| node.id;
+	b.name = c.Name
+	b.title = c.Title             //|| node.title;
+	b.description = c.Description // || node.description;
+	b.properties = c.Properties   //|| node.properties;
+
 }
 
 func (b *BaseNode) Execute(t *Tick) util.Status {

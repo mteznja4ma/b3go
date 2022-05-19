@@ -1,12 +1,13 @@
 package core
 
 type Tick struct {
-	tree       *BehaviorTree
-	debug      interface{}
-	target     interface{}
-	BlackBoard *BlackBoard
-	openNodes  []IBaseNode
-	nodeCount  int
+	tree             *BehaviorTree
+	debug            interface{}
+	target           interface{}
+	BlackBoard       *BlackBoard
+	openSubtreeNodes []*SubTree
+	openNodes        []IBaseNode
+	nodeCount        int
 }
 
 func NewTick() *Tick {
@@ -49,6 +50,17 @@ func (t *Tick) closeNode(node *BaseNode) {
 	nlen := len(t.openNodes)
 	if nlen > 0 {
 		t.openNodes = t.openNodes[:(nlen - 1)]
+	}
+}
+
+func (t *Tick) pushSubtreeNode(node *SubTree) {
+	t.openSubtreeNodes = append(t.openSubtreeNodes, node)
+}
+
+func (t *Tick) popSubtreeNode() {
+	ulen := len(t.openSubtreeNodes)
+	if ulen > 0 {
+		t.openSubtreeNodes = t.openSubtreeNodes[:ulen-1]
 	}
 }
 

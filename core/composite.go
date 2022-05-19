@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	"github.com/MTEzNjA4MA/Gai-b3Go/util"
+	"github.com/mteznja4ma/Gai-b3Go/util"
 )
 
 type IComposite interface {

@@ -3,13 +3,15 @@ package core
 import (
 	"fmt"
 
-	"github.com/MTEzNjA4MA/Gai-b3Go/util"
+	"github.com/mteznja4ma/Gai-b3Go/config"
+	"github.com/mteznja4ma/Gai-b3Go/util"
 )
 
 type BehaviorTree struct {
 	id          string
 	title       string
 	description string
+	properties  map[string]interface{}
 	root        IBaseNode
 	debug       interface{}
 }
@@ -18,6 +20,65 @@ func NewBeTree() *BehaviorTree {
 	tree := &BehaviorTree{}
 	tree.Initialize()
 	return tree
+}
+
+func (b *BehaviorTree) Load(c *config.B3TreeConfig, m *util.RegisterStructMaps, extra *util.RegisterStructMaps) {
+	b.title = c.Title
+	b.description = c.Description
+	b.properties = c.Properties
+	nodes := make(map[string]IBaseNode)
+
+	// Create the node list (without connection between them)
+	for i, v := range c.Nodes {
+		n := &v
+		var node IBaseNode
+
+		if n.Category == "tree" {
+			node = &SubTree{}
+		} else {
+			if extra != nil && extra.CheckElem(n.Name) {
+				// Look for the name in custom nodes
+				if tnode, err := extra.New(n.Name); err == nil {
+					node = tnode.(IBaseNode)
+				}
+			} else {
+				if tnode, err := m.New(n.Name); err == nil {
+					node = tnode.(IBaseNode)
+				} else {
+					//fmt.Println("new ", spec.Name, " err:", err2)
+				}
+			}
+		}
+
+		if node == nil {
+			// Invalid node name
+			panic("BehaviorTree.load: Invalid node name:" + n.Name + ",title:" + n.Title)
+
+		}
+
+		node.Category()
+		node.Initialize(n)
+		node.SetBaseNodeWorker(node.(IBaseWorker))
+		nodes[i] = node
+	}
+
+	// Connect the nodes
+	for id, spec := range c.Nodes {
+		node := nodes[id]
+
+		if node.GetCategory() == util.COMPOSITE && spec.Children != nil {
+			for i := 0; i < len(spec.Children); i++ {
+				var cid = spec.Children[i]
+				comp := node.(IComposite)
+				comp.AddChild(nodes[cid])
+			}
+		} else if node.GetCategory() == util.DECORATOR && len(spec.Child) > 0 {
+			dec := node.(IDecorator)
+			dec.SetChild(nodes[spec.Child])
+		}
+	}
+
+	b.root = nodes[c.Root]
 }
 
 /**

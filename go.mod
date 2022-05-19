@@ -1,3 +1,3 @@
-module github.com/MTEzNjA4MA/Gai-b3Go
+module github.com/mteznja4ma/Gai-b3Go
 
 go 1.16

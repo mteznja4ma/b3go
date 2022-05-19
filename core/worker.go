@@ -1,8 +1,6 @@
 package core
 
-import (
-	"github.com/MTEzNjA4MA/Gai-b3Go/util"
-)
+import "github.com/mteznja4ma/Gai-b3Go/util"
 
 type IBaseWorker interface {
 	OnEnter(t *Tick)
