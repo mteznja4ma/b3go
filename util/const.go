@@ -2,8 +2,6 @@ package util
 
 // define
 const (
-	VERSION = "0.2.0"
-
 	// Node categories
 	COMPOSITE = "composite"
 	DECORATOR = "decorator"
