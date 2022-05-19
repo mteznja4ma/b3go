@@ -17,7 +17,7 @@ type B3NodeConfig struct {
 }
 
 func (b *B3NodeConfig) getProperty(key string) interface{} {
-	if v, ok := b.Properties[key]; !ok {
+	if v, ok := b.Properties[key]; ok {
 		return v
 	}
 	log.Fatal("", "GetProperty err ,no vlaue")
