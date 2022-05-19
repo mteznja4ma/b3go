@@ -1,6 +1,6 @@
 package core
 
-import "github.com/mteznja4ma/Gai-b3Go/util"
+import "github.com/mteznja4ma/b3go/util"
 
 type ICondition interface {
 	IBaseNode

@@ -3,9 +3,9 @@ package decorators
 import (
 	"time"
 
-	"github.com/mteznja4ma/Gai-b3Go/util"
+	"github.com/mteznja4ma/b3go/util"
 
-	c "github.com/mteznja4ma/Gai-b3Go/core"
+	c "github.com/mteznja4ma/b3go/core"
 )
 
 type MaxTime struct {

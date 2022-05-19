@@ -1,12 +1,12 @@
 package loader
 
 import (
-	a "github.com/mteznja4ma/Gai-b3Go/actions"
-	c "github.com/mteznja4ma/Gai-b3Go/composites"
-	"github.com/mteznja4ma/Gai-b3Go/config"
-	"github.com/mteznja4ma/Gai-b3Go/core"
-	d "github.com/mteznja4ma/Gai-b3Go/decorators"
-	"github.com/mteznja4ma/Gai-b3Go/util"
+	a "github.com/mteznja4ma/b3go/actions"
+	c "github.com/mteznja4ma/b3go/composites"
+	"github.com/mteznja4ma/b3go/config"
+	"github.com/mteznja4ma/b3go/core"
+	d "github.com/mteznja4ma/b3go/decorators"
+	"github.com/mteznja4ma/b3go/util"
 )
 
 func createBaseCategory() *util.RegisterStructMaps {

@@ -1,4 +1,4 @@
-# Gai-b3Go
+# b3go
 ## 概念
 ### NodeStaus
 - `SUCCESS` - 节点执行成功

@@ -3,10 +3,10 @@ package actions
 import (
 	"time"
 
-	"github.com/mteznja4ma/Gai-b3Go/config"
-	"github.com/mteznja4ma/Gai-b3Go/util"
+	"github.com/mteznja4ma/b3go/config"
+	"github.com/mteznja4ma/b3go/util"
 
-	c "github.com/mteznja4ma/Gai-b3Go/core"
+	c "github.com/mteznja4ma/b3go/core"
 )
 
 type Wait struct {

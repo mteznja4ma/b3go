@@ -1,8 +1,8 @@
 package decorators
 
 import (
-	c "github.com/mteznja4ma/Gai-b3Go/core"
-	"github.com/mteznja4ma/Gai-b3Go/util"
+	c "github.com/mteznja4ma/b3go/core"
+	"github.com/mteznja4ma/b3go/util"
 )
 
 type Limiter struct {
